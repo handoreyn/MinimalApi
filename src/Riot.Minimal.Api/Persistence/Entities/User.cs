@@ -19,6 +19,7 @@ public sealed class User
         Status = status;
     }
 
+    [JsonConstructor]
     public User(string username, string email, string password, StatusEnumType status = StatusEnumType.Active)
     {
         Username = username;

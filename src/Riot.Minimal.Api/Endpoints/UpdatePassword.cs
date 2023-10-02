@@ -3,7 +3,7 @@ using Riot.Minimal.Api.Persistence;
 
 namespace Riot.Minimal.Api.Endpoints;
 
-public static class UpdatePassword
+public static class ChangePassword
 {
     public static void MapUpdatePassword(this WebApplication app)
     {

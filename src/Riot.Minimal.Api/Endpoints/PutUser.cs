@@ -7,7 +7,7 @@ public static class PutUser
 {
     public static void MapPutUser(this WebApplication app)
     {
-        app.MapPut("/{id}", async (int id, User user, RiotDatabaseContext db, CancellationToken cancellationToken) =>
+        app.MapPut("/{id}", async (int id, UpdateUserModel user, RiotDatabaseContext db, CancellationToken cancellationToken) =>
         {
             var existingUser = await db.Users.FindAsync(id, cancellationToken);
             if (existingUser is null) return Results.BadRequest();
@@ -20,3 +20,5 @@ public static class PutUser
         });
     }
 }
+
+public sealed record UpdateUserModel(string Email, string Username);
