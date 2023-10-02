@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Riot.Minimal.Api.Persistence.Entities;
 
 public sealed class User
@@ -11,6 +13,14 @@ public sealed class User
     public User(int id, string username, string email, string password, StatusEnumType status = StatusEnumType.Active)
     {
         Id = id;
+        Username = username;
+        Email = email;
+        Password = password;
+        Status = status;
+    }
+
+    public User(string username, string email, string password, StatusEnumType status = StatusEnumType.Active)
+    {
         Username = username;
         Email = email;
         Password = password;
