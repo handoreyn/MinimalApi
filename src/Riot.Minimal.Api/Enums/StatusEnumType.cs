@@ -1,6 +1,6 @@
 namespace Riot.Minimal.Api.Persistence.Entities;
 
-public sealed enum StatusEnumType
+public enum StatusEnumType
 {
     Deleted = -1,
     Passive = 0,
