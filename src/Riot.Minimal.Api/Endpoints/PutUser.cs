@@ -10,7 +10,7 @@ public static class PutUser
         app.MapPut("/{id}", async (int id, UpdateUserModel user, RiotDatabaseContext db, CancellationToken cancellationToken) =>
         {
             var existingUser = await db.Users.FindAsync(id, cancellationToken);
-            if (existingUser is null) return Results.BadRequest();
+            if (existingUser is null) return Results.NotFound(new ErrorResponseModel($"User with Id: {id} with does not exist."));
 
             existingUser.Email = user.Email;
             existingUser.Username = user.Username;

@@ -10,7 +10,7 @@ public static class ChangeStatus
         app.MapPut("/{id}/change-status", async (int id, UpdateUserStatusModel model, RiotDatabaseContext db, CancellationToken cancellationToken) =>
         {
             var user = await db.Users.FindAsync(id, cancellationToken);
-            if (user is null) return Results.BadRequest();
+            if (user is null) return Results.NotFound(new ErrorResponseModel($"User with Id: {id} with does not exist."));
 
             user.Status = model.Status;
 

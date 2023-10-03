@@ -13,7 +13,7 @@ public static class GetUsersEndpoint
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
-            if (!users.Any()) return Results.NotFound();
+            if (!users.Any()) return Results.NotFound(new ErrorResponseModel("There is no user exist on system."));
             return Results.Ok(users);
         });
     }
