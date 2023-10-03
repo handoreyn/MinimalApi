@@ -10,7 +10,7 @@ public static class GetUserByUserId
         app.MapGet("/{id}", async (int id, RiotDatabaseContext db, CancellationToken cancellationToken) =>
         {
             var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
-            if (user is null) return Results.NotFound();
+            if (user is null) return Results.NotFound(new ErrorResponseModel($"User with Id: {id} with does not exist."));
 
             return Results.Ok(user);
         });

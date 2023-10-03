@@ -10,9 +10,9 @@ public static class ChangePassword
         app.MapPut("/{id}/change-password", async (int id, UpdatePasswordModel model, RiotDatabaseContext db, CancellationToken cancellationToken) =>
         {
             var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id && u.Status == Persistence.Entities.StatusEnumType.Active, cancellationToken);
-            if (user is null) return Results.BadRequest();
+            if (user is null) return Results.NotFound(new ErrorResponseModel($"User with Id: {id} with does not exist."));
 
-            if (!model.Password.Equals(model.PasswordValidate)) return Results.BadRequest();
+            if (!model.Password.Equals(model.PasswordValidate)) return Results.BadRequest(new ErrorResponseModel("Passwords not"));
 
             user.Password = model.Password;
             await db.SaveChangesAsync(cancellationToken);
